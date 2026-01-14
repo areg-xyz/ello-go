@@ -18,13 +18,13 @@
         <header>
             <h1>THE ADVENTURES OF SCROLLING!</h1>
             <div id="visitor-counter" 
-                 hx-get="localhost:7071/api/visitors" 
+                 hx-get="/api/visitors" 
                  hx-trigger="load" 
                  hx-swap="innerHTML">
                 Loading visitor count...
             </div>
             <!-- Trigger POST on load to count unique visit -->
-            <div hx-post="localhost:7071/api/visitors" hx-trigger="load" style="display:none;"></div>
+            <div hx-post="/api/visitors" hx-trigger="load" style="display:none;"></div>
         </header>
 
         <main id="scroll-container">
