@@ -1,0 +1,170 @@
+:root {
+    --c-cyan: #00AEEF;
+    --c-magenta: #EC008C;
+    --c-yellow: #FFF200;
+    --c-black: #231F20;
+    --c-paper: #F6F1D1;
+    --font-heading: 'Bangers', cursive;
+    --font-body: 'Comic Neue', cursive;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--c-paper);
+    color: var(--c-black);
+    font-family: var(--font-body);
+    /* Halftone pattern background */
+    background-image: radial-gradient(var(--c-cyan) 1px, transparent 1px),
+                      radial-gradient(var(--c-magenta) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    overflow-x: hidden;
+}
+
+.comic-border {
+    border: 15px solid var(--c-black);
+    min-height: 100vh;
+    padding: 20px;
+    background: rgba(246, 241, 209, 0.9); /* Slight opacity over halftone */
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+}
+
+header {
+    text-align: center;
+    border-bottom: 5px solid var(--c-black);
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    color: var(--c-yellow);
+    text-shadow: 4px 4px 0 var(--c-black), 
+                 -2px -2px 0 var(--c-magenta);
+    margin: 0;
+    letter-spacing: 2px;
+    transform: rotate(-2deg);
+}
+
+#visitor-counter {
+    background: var(--c-black);
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transform: rotate(2deg);
+    margin-top: 20px;
+    border: 2px solid var(--c-yellow);
+}
+
+/* 3D SCENE */
+.scene {
+    width: 600px;
+    height: 400px;
+    margin: 50px auto;
+    perspective: 1000px;
+    position: sticky;
+    top: 20vh;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out; /* Smooth scrubbing */
+}
+
+/* TILES */
+.tile-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    /* We will rotate these via JS or CSS if static, but JS for scroll */
+    transform-origin: center center 0px; 
+    /* Backface visibility helps performance but we might want double sided */
+    /* backface-visibility: hidden; */
+}
+
+.tile {
+    width: 100%;
+    height: 100%;
+    border: 8px solid var(--c-black);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    text-align: center;
+    box-shadow: 20px 20px 0px rgba(35, 31, 32, 0.4);
+    
+    /* Make the images cover the tile */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Assign images using generated assets (assuming filenames) */
+/* Update these paths to the actual relative paths when copying assets */
+.t1 { background-image: url('assets/hero.png'); }
+.t2 { background-image: url('assets/villain.png'); }
+.t3 { background-image: url('assets/city.png'); }
+
+/* Initial positions in ring (120 degrees apart) */
+.tile-wrapper:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
+.tile-wrapper:nth-child(2) { transform: rotateY(120deg) translateZ(400px); }
+.tile-wrapper:nth-child(3) { transform: rotateY(240deg) translateZ(400px); }
+
+
+/* SCROLL SPACERS */
+.story-text {
+    text-align: center;
+    padding-top: 100px; /* Space for sticky start */
+}
+
+.spacer {
+    height: 80vh; /* Gap between text blocks to force scrolling */
+}
+
+p {
+    font-size: 2rem;
+    background: white;
+    border: 3px solid var(--c-black);
+    display: inline-block;
+    padding: 15px;
+    box-shadow: 5px 5px 0 var(--c-cyan);
+}
+
+.boom {
+    font-family: var(--font-heading);
+    font-size: 8rem;
+    color: var(--c-magenta);
+    text-shadow: 3px 3px 0 var(--c-black);
+    background: none;
+    border: none;
+    box-shadow: none;
+    transform: rotate(-10deg);
+}
+
+.zap {
+    font-family: var(--font-heading);
+    font-size: 6rem;
+    color: var(--c-cyan);
+    text-shadow: 3px 3px 0 var(--c-black);
+    background: none;
+    border: none;
+    box-shadow: none;
+    transform: rotate(15deg);
+}

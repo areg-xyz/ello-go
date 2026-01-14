@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Age Scroll</title>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="comic-border">
+        <header>
+            <h1>THE ADVENTURES OF SCROLLING!</h1>
+            <div id="visitor-counter" 
+                 hx-get="localhost:7071/api/visitors" 
+                 hx-trigger="load" 
+                 hx-swap="innerHTML">
+                Loading visitor count...
+            </div>
+            <!-- Trigger POST on load to count unique visit -->
+            <div hx-post="localhost:7071/api/visitors" hx-trigger="load" style="display:none;"></div>
+        </header>
+
+        <main id="scroll-container">
+            <!-- Long scrollable area -->
+            <div class="scroll-track">
+                
+                <!-- Fixed viewport for the rotating tiles -->
+                <div class="scene">
+                    <div class="carousel" id="carousel">
+                        <!-- Tiles will be inserted here or pre-defined -->
+                        <div class="tile-wrapper">
+                            <div class="tile t1"></div>
+                        </div>
+                        <div class="tile-wrapper">
+                            <div class="tile t2"></div>
+                        </div>
+                        <div class="tile-wrapper">
+                            <div class="tile t3"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="story-text">
+                <p>SCROLL DOWN TO REVEAL THE MYSTERY!</p>
+                <div class="spacer"></div>
+                <p class="boom">KAT-POW!</p>
+                <div class="spacer"></div>
+                <p>MEANWHILE...</p>
+                <div class="spacer"></div>
+                <p class="zap">ZAP!</p>
+                <div class="spacer"></div>
+                <p>TO BE CONTINUED...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
